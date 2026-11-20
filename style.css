@@ -69,3 +69,26 @@
 .product-category-tag{display:inline-flex;margin:5px 0 2px;padding:4px 8px;border-radius:6px;background:rgba(95,145,190,.13);color:#9bc7ed;font-size:10px;font-weight:650}
 @media(max-width:700px){.catalog-controls{grid-template-columns:1fr 1fr}.catalog-controls .searchbar{grid-column:1/-1}}
 @media(max-width:420px){.catalog-controls{grid-template-columns:1fr}.catalog-controls .searchbar{grid-column:auto}}
+
+
+/* Detailed product profile */
+.details-product-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 8px;border:1px solid #344456;border-radius:7px;background:#182330;color:#b5c8dc;font-size:10px}
+.details-product-btn:hover{background:#243448;color:#e0efff}
+.product-details-modal{width:min(620px,100%)}
+.details-status{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #29445d;border-radius:9px;background:#142536}
+.details-status span,.detail-item span{font-size:10px;color:#8ea1b7}
+.details-status b{font-size:12px;color:#a8d4ff}
+.details-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.detail-item{display:grid;gap:5px;padding:11px;background:#0c131b;border:1px solid #293746;border-radius:9px;min-width:0}
+.detail-item b{font-size:12px;color:#e1eaf4;overflow-wrap:anywhere}
+.details-link{display:inline-flex;align-items:center;gap:6px;color:#8fc5ff;text-decoration:none;font-size:11px;margin-right:14px}
+.details-notes{padding:12px 13px;border-radius:9px;background:#0c131b;border:1px solid #293746}
+.details-notes b,.history-heading b{font-size:12px;color:#dce7f2}
+.details-notes p{font-size:11px;line-height:1.6;color:#9aabc0;white-space:pre-wrap;margin:7px 0 0}
+.history-heading{display:flex;align-items:center;gap:8px;padding-top:5px;color:#8fc5ff}
+.product-history{list-style:none;margin:0;padding:0 0 0 14px;border-left:1px solid #38516a;display:grid;gap:12px}
+.product-history li{position:relative;display:grid;gap:4px;padding-left:8px}
+.product-history li:before{content:"";position:absolute;left:-18px;top:4px;width:7px;height:7px;border-radius:50%;background:#78baff}
+.product-history li b{font-size:11px;color:#dce7f2}
+.product-history li span{font-size:10px;color:#8194a9}
+@media(max-width:480px){.details-grid{grid-template-columns:1fr 1fr}.details-product-btn span{display:none}}
