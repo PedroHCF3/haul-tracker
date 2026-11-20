@@ -54,3 +54,6 @@
 .tracking-history li:before{content:"";position:absolute;left:-17px;top:4px;width:7px;height:7px;border-radius:50%;background:#78baff}
 .tracking-history li b{color:#dce7f2;font-size:11px;font-weight:500;line-height:1.4}
 .tracking-history li span,.tracking-history li small{color:#8194a9;font-size:10px}
+
+/* Product editing actions */
+.product-actions{display:flex;align-items:center;gap:7px;flex-shrink:0}.edit-product-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 8px;border:1px solid #2b4054;border-radius:7px;background:#172536;color:#91c5f5;font-size:10px}.edit-product-btn:hover{background:#20364c;color:#c5e3ff}@media(max-width:480px){.edit-product-btn span{display:none}.product-actions{flex-direction:column;gap:2px}}
