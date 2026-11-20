@@ -38,3 +38,19 @@
 .finance-summary .finance-card{background:#111923;border:1px solid #263443;padding:19px}
 .finance-summary .finance-card.total{background:linear-gradient(120deg,#152b3e,#14251f);border-color:#294154}
 @media(max-width:700px){.shipment-card{padding:13px}.shipment-card-head{flex-wrap:wrap}.shipment-card-head select{margin-left:51px;max-width:none;flex:1}.shipment-details{display:grid;gap:8px}.form-two{grid-template-columns:1fr}.finance-summary{grid-template-columns:1fr}.shipment-actions{justify-content:space-between}}
+
+/* 17TRACK automatic tracking */
+.field-hint{display:block;color:#8292a6;font-size:10px;font-weight:400;margin-top:5px;line-height:1.45}
+.tracking-latest{margin:12px 0;padding:12px 13px;background:#122536;border:1px solid #25445d;border-radius:9px}
+.tracking-latest>b{display:block;color:#a8d6ff;font-size:10px;text-transform:uppercase;letter-spacing:.06em}
+.tracking-latest p{margin:7px 0 4px;color:#e1edf8;font-size:12px;line-height:1.5}
+.tracking-latest small{display:block;color:#91a8bd;font-size:10px;margin-top:4px}
+.tracking-error{margin:10px 0;color:#ffb3a9;font-size:11px;line-height:1.5}
+.tracking-retry{margin:3px 0 10px}
+.tracking-history{margin:12px 0;border-top:1px solid #293746;padding-top:10px}
+.tracking-history summary{cursor:pointer;color:#9fcfff;font-size:11px;font-weight:600}
+.tracking-history ol{list-style:none;margin:10px 0 0;padding:0 0 0 13px;border-left:1px solid #38516a;display:grid;gap:12px}
+.tracking-history li{position:relative;display:grid;gap:4px;padding-left:8px}
+.tracking-history li:before{content:"";position:absolute;left:-17px;top:4px;width:7px;height:7px;border-radius:50%;background:#78baff}
+.tracking-history li b{color:#dce7f2;font-size:11px;font-weight:500;line-height:1.4}
+.tracking-history li span,.tracking-history li small{color:#8194a9;font-size:10px}
