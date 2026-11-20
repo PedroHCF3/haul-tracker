@@ -15,7 +15,7 @@ function App(){
  const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[authMsg,setAuthMsg]=useState('');
  const [products,setProducts]=useState([]),[tab,setTab]=useState('overview'),[query,setQuery]=useState(''),[showAdd,setShowAdd]=useState(false),[mobileNav,setMobileNav]=useState(false);
  const [categoryFilter,setCategoryFilter]=useState('Todas'),[sortOrder,setSortOrder]=useState('newest');
- const [form,setForm]=useState({title:'',url:'',price:'',status:'Link salvo',qc_url:'',notes:'',image_url:'',category:'',brand:'',,size:'',color:'',extra_cost:''});
+ const [form,setForm]=useState({title:'',url:'',price:'',status:'Link salvo',qc_url:'',notes:'',image_url:'',category:'',brand:'',size:'',color:'',extra_cost:''});
  const [editingProduct,setEditingProduct]=useState(null);
  const [detailProduct,setDetailProduct]=useState(null),[statusHistory,setStatusHistory]=useState([]),[loadingHistory,setLoadingHistory]=useState(false);
  const [notice,setNotice]=useState('');
