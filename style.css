@@ -126,3 +126,5 @@
 .image-lightbox .icon-btn{position:absolute;top:18px;right:18px}
 @media(max-width:950px){.wardrobe-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.wardrobe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.outfit-thumbs{grid-template-columns:repeat(2,36px)}.outfit-thumbs>div{width:36px;height:36px}}
+
+.variant-card>img{cursor:zoom-in}
