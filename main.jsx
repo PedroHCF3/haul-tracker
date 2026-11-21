@@ -102,8 +102,7 @@ function App(){
  function openVariants(p){setVariantProduct(p);setVariantName('');setVariantUrl('')}
  function openQcSearch(product){
   if(!product?.url){setNotice('Este produto não tem um link salvo.');return;}
-  const qcTab=window.open('https://www.uufinds.com/qcfinds','_blank','noopener,noreferrer');
-  if(!qcTab)setNotice('O navegador bloqueou a nova aba. Permita pop-ups para abrir o UUFinds.');
+  window.open('https://www.uufinds.com/qcfinds','_blank','noopener,noreferrer');
   if(navigator.clipboard?.writeText){
    navigator.clipboard.writeText(product.url)
     .then(()=>setNotice('Link do produto copiado. Cole no campo do UUFinds para buscar fotos QC.'))
