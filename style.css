@@ -280,3 +280,40 @@
 .buy-product-info small{font-size:12px;color:var(--muted);min-height:18px}
 .buy-product-info strong{font-size:17px;margin:3px 0}
 .buy-product-info .primary{display:flex;justify-content:center;align-items:center;gap:7px}
+
+
+/* Automatic seller-variation selector */
+.buy-link-form{display:flex;align-items:flex-end;gap:12px;padding:18px;background:var(--panel,#111827);border:1px solid var(--border,#263244);border-radius:16px;margin:18px 0 24px}
+.buy-link-form label{display:flex;flex:1;flex-direction:column;gap:8px;font-size:13px;font-weight:650;color:var(--text,#f4f6fb)}
+.buy-link-form input{width:100%;min-width:0;padding:13px 14px;border:1px solid var(--border,#334155);border-radius:10px;background:var(--surface,#0b1220);color:var(--text,#f4f6fb);font:inherit}
+.buy-loading,.buy-empty-state{display:flex;align-items:center;justify-content:center;gap:12px;padding:34px 20px;border:1px dashed var(--border,#334155);border-radius:16px;color:var(--muted,#94a3b8);text-align:center}
+.buy-empty-state{flex-direction:column;margin-top:22px}
+.buy-empty-state b{color:var(--text,#f4f6fb)}
+.buy-empty-state p{max-width:520px;margin:0}
+.buy-detail-panel{padding:22px;border:1px solid var(--border,#263244);border-radius:18px;background:var(--panel,#111827);margin-bottom:30px}
+.buy-detail-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.buy-detail-heading h2{font-size:20px;margin:5px 0 7px}
+.buy-detail-heading small{color:var(--muted,#94a3b8)}
+.buy-detail-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:26px}
+.buy-detail-gallery{min-width:0}
+.buy-detail-hero{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:330px;max-height:520px;overflow:hidden;border:1px solid var(--border,#263244);border-radius:14px;background:var(--surface,#0b1220);color:var(--muted,#94a3b8);cursor:zoom-in}
+.buy-detail-hero img{width:100%;height:100%;max-height:520px;object-fit:contain}
+.buy-detail-hero span{position:absolute;right:12px;bottom:12px;padding:6px 9px;border-radius:8px;background:#0009;color:#fff;font-size:11px}
+.buy-detail-thumbs{display:flex;gap:9px;overflow-x:auto;padding:12px 1px}
+.buy-detail-thumbs button{flex:0 0 68px;width:68px;height:68px;padding:3px;border:1px solid var(--border,#334155);border-radius:9px;background:var(--surface,#0b1220);cursor:pointer}
+.buy-detail-thumbs button.active{border-color:var(--accent,#8b9cff);box-shadow:0 0 0 1px var(--accent,#8b9cff)}
+.buy-detail-thumbs img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.buy-detail-options{display:flex;flex-direction:column;gap:15px;min-width:0}
+.buy-detail-price{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px;border:1px solid var(--border,#334155);border-radius:12px;background:var(--surface,#0b1220)}
+.buy-detail-price>div{display:flex;flex-direction:column;gap:4px}
+.buy-detail-price small,.buy-detail-price span{color:var(--muted,#94a3b8);font-size:12px}
+.buy-detail-price strong{font-size:24px}
+.buy-stock-ok,.buy-stock-out{white-space:nowrap;padding:6px 9px;border-radius:8px;background:#16a34a1a;color:#4ade80!important}
+.buy-stock-out{background:#dc26261a;color:#f87171!important}
+.buy-option-field,.buy-quantity-field{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:650}
+.buy-option-field select,.buy-quantity-field input{width:100%;padding:11px 12px;border:1px solid var(--border,#334155);border-radius:9px;background:var(--surface,#0b1220);color:var(--text,#f4f6fb);font:inherit}
+.buy-quantity-field input{max-width:120px}
+.buy-selection-summary{display:flex;flex-direction:column;gap:7px;padding:14px;border-radius:12px;background:var(--surface,#0b1220);font-size:13px;color:var(--muted,#94a3b8)}
+.buy-selection-summary b{color:var(--text,#f4f6fb);margin-bottom:3px}
+.buy-source-note,.buy-no-options{font-size:12px;line-height:1.5;color:var(--muted,#94a3b8);margin:0}
+@media(max-width:800px){.buy-detail-layout{grid-template-columns:1fr}.buy-detail-hero{min-height:260px}.buy-link-form{align-items:stretch;flex-direction:column}.buy-link-form button{width:100%}.buy-detail-heading{flex-direction:column}}
