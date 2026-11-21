@@ -224,3 +224,23 @@
 @media(max-width:600px){.import-calculator{padding:14px}.import-calculator-head{display:grid}.import-state-pill{justify-self:start}.import-input-grid{grid-template-columns:1fr}.import-breakdown>div{font-size:10px}}
 
 .original-cny{display:block;color:#8fb7df;font-size:10px;font-weight:600;margin-left:6px;white-space:nowrap}
+
+/* Batch product import */
+.batch-import-modal{width:min(680px,100%);max-height:90vh;overflow:auto}
+.batch-import-modal>p{font-size:12px;line-height:1.6;margin:0 0 14px}
+.batch-import-modal textarea{width:100%;resize:vertical;min-height:130px;background:#0c131b;border:1px solid #2a394a;border-radius:9px;color:#e4edf7;padding:11px;font:11px/1.6 ui-monospace,monospace}
+.batch-import-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 15px}
+.batch-import-actions>span,.batch-results-head>span{font-size:10px;color:#8292a6}
+.batch-import-results{display:grid;gap:7px;max-height:310px;overflow:auto;margin:12px 0 15px;padding:10px;background:#0c131b;border:1px solid #293746;border-radius:10px}
+.batch-results-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 1px 7px}
+.batch-results-head>b{font-size:11px;color:#dce7f2}
+.batch-import-row{display:flex;align-items:center;gap:10px;min-width:0;padding:8px;background:#111c28;border:1px solid #263443;border-radius:8px}
+.batch-import-row>img,.batch-import-placeholder{width:42px;height:42px;flex-shrink:0;object-fit:cover;border-radius:6px;background:#1a2a3b}
+.batch-import-placeholder{display:grid;place-items:center;color:#83b9ed}
+.batch-import-row>div:nth-child(2){display:grid;gap:4px;min-width:0;flex:1}
+.batch-import-row>div:nth-child(2)>b{font-size:10px;color:#e0eaf5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.batch-import-row small{font-size:9px;color:#91a7bd}
+.batch-import-row .batch-import-url{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.batch-import-row>span{flex-shrink:0;font-size:9px;font-weight:700}
+.batch-ok{color:#8bd9ac}.batch-fail{color:#f0a49e}
+@media(max-width:520px){.batch-import-modal{padding:16px}.batch-import-actions{align-items:stretch;flex-direction:column}.batch-import-actions button{width:100%}.batch-import-row{gap:7px}.batch-import-row>img,.batch-import-placeholder{width:36px;height:36px}}
