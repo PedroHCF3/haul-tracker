@@ -154,3 +154,40 @@
 @media(max-width:900px){.advanced-filters{grid-template-columns:repeat(3,minmax(0,1fr))}.currency-controls{grid-template-columns:1fr 1fr}.currency-controls button{grid-column:1/-1}}
 @media(max-width:700px){.head-actions{width:100%}.head-actions button{flex:1}.advanced-filters{grid-template-columns:repeat(2,minmax(0,1fr));padding:10px}.currency-controls{grid-template-columns:1fr 1fr}.currency-controls label:first-child{grid-column:1/-1}.currency-controls button{grid-column:1/-1}}
 @media(max-width:420px){.advanced-filters{grid-template-columns:1fr}.product-quick-actions{gap:5px}.currency-controls{grid-template-columns:1fr}}
+
+
+/* Visual outfit builder */
+.outfit-editor-modal{width:min(980px,100%);max-height:92vh}
+.outfit-editor-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:16px;min-height:340px}
+.outfit-stage-wrap,.outfit-source-wrap{min-width:0;display:grid;align-content:start;gap:10px}
+.outfit-stage-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.outfit-stage-heading b{display:block;color:#e4edf7;font-size:13px}
+.outfit-stage-heading small,.outfit-stage-heading>span{display:block;color:#8292a6;font-size:10px;margin-top:4px}
+.outfit-stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-height:250px;align-content:start;padding:12px;background:linear-gradient(145deg,#0b141e,#111d29);border:1px dashed #38516a;border-radius:12px}
+.outfit-stage-piece{min-width:0;overflow:hidden;background:#152231;border:1px solid #2c4054;border-radius:10px;cursor:grab}
+.outfit-stage-piece:active{cursor:grabbing}
+.outfit-piece-image{position:relative;aspect-ratio:1/1;background:#1b2b3b;display:grid;place-items:center;color:#8bbfff}
+.outfit-piece-image img{width:100%;height:100%;object-fit:cover}
+.outfit-piece-number{position:absolute;top:7px;left:7px;display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#0a111bdc;color:#dceeff;font-size:10px;font-weight:700}
+.outfit-piece-info{padding:9px}
+.outfit-piece-info>b,.outfit-piece-info b{display:block;color:#e5edf6;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.outfit-piece-info small{display:block;color:#8c9eb2;font-size:9px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.outfit-piece-actions{display:flex;align-items:center;gap:5px;margin-top:8px;color:#8298ae}
+.mini-order,.mini-remove{border:1px solid #34495e;background:#1a2a3b;color:#bcd4eb;border-radius:6px;padding:4px 7px;font-size:10px}
+.mini-order:disabled{opacity:.3}
+.mini-remove{margin-left:auto;color:#ffb2b2;border-color:#68404a;background:#2b1b22}
+.outfit-stage-empty{grid-column:1/-1;min-height:220px;display:grid;align-content:center;justify-items:center;gap:8px;color:#83a0bd;text-align:center}
+.outfit-stage-empty b{color:#dce7f2;font-size:13px}
+.outfit-stage-empty span{color:#8292a6;font-size:10px}
+.outfit-source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-height:430px;overflow:auto;padding:2px}
+.outfit-source-card{min-width:0;text-align:left;padding:0 0 8px;overflow:hidden;border:1px solid #2a3b4d;border-radius:9px;background:#0d1721;color:#dce7f2}
+.outfit-source-card>div{position:relative;aspect-ratio:1/1;display:grid;place-items:center;background:#172536;color:#8bbfff}
+.outfit-source-card img{width:100%;height:100%;object-fit:cover}
+.outfit-source-card>div>span{position:absolute;inset:auto 4px 4px;padding:4px;background:#153b2bdf;color:#a9edc4;border-radius:5px;text-align:center;font-size:8px}
+.outfit-source-card>b,.outfit-source-card>small{display:block;margin:6px 7px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.outfit-source-card>b{font-size:9px}
+.outfit-source-card>small{font-size:8px;color:#8497ab}
+.outfit-source-card.selected{border-color:#65a8e8;background:#14283a}
+.outfit-edit-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 8px;border:1px solid #34516c;border-radius:7px;background:#17283a;color:#9dcefa;font-size:10px}
+@media(max-width:700px){.outfit-editor-modal{max-height:94vh;padding:16px}.outfit-editor-layout{grid-template-columns:1fr}.outfit-stage{grid-template-columns:repeat(2,minmax(0,1fr));min-height:180px}.outfit-source-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-height:300px}.outfit-stage-heading>span{display:none}}
+@media(max-width:380px){.outfit-source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
