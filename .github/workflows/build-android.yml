@@ -13,6 +13,9 @@ jobs:
   build:
     name: Build Haul Tracker APK
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: https://hyvpmrycaqleiwjbctal.supabase.co
+      VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_u-AdgPUQngrfvRHR4h-jfw_hquijGtm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
