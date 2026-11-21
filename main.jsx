@@ -102,14 +102,9 @@ function App(){
  function openVariants(p){setVariantProduct(p);setVariantName('');setVariantUrl('')}
  function openQcSearch(product){
   if(!product?.url){setNotice('Este produto não tem um link salvo.');return;}
-  window.open('https://www.uufinds.com/qcfinds','_blank','noopener,noreferrer');
-  if(navigator.clipboard?.writeText){
-   navigator.clipboard.writeText(product.url)
-    .then(()=>setNotice('Link do produto copiado. Cole no campo do UUFinds para buscar fotos QC.'))
-    .catch(()=>setNotice('UUFinds aberto. Copie o link do produto manualmente e cole na busca.'));
-  }else{
-   setNotice('UUFinds aberto. Copie o link do produto e cole na busca.');
-  }
+  const qcUrl='https://www.uufinds.com/qcfinds?url='+encodeURIComponent(product.url);
+  window.open(qcUrl,'_blank','noopener,noreferrer');
+  setNotice('Abrindo o UUFinds com o link deste produto.');
  }
  async function addVariant(e){e.preventDefault();if(!variantProduct||!variantUrl.trim())return;setSavingVariant(true);const current=variants[variantProduct.id]||[];const variantLabel=variantName.trim()||'Variante '+(current.length+1);const {error}=await supabase.from('product_variants').insert({product_id:variantProduct.id,user_id:session.user.id,name:variantLabel,image_url:variantUrl.trim(),is_primary:current.length===0});setSavingVariant(false);if(error){setNotice(error.message);return;}await logActivity('image_added','product',variantProduct.id,'Imagem adicionada a '+variantProduct.title,{variant:variantLabel});setVariantName('');setVariantUrl('');setNotice('Imagem adicionada.');loadProducts()}
  async function setPrimaryVariant(v){const {error}=await supabase.from('product_variants').update({is_primary:false}).eq('product_id',v.product_id);if(error){setNotice(error.message);return;}const {error:err}=await supabase.from('product_variants').update({is_primary:true}).eq('id',v.id);if(err)setNotice(err.message);else{await logActivity('image_primary','product',v.product_id,'Imagem principal alterada');loadProducts()}}
