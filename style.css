@@ -191,3 +191,40 @@
 .outfit-edit-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 8px;border:1px solid #34516c;border-radius:7px;background:#17283a;color:#9dcefa;font-size:10px}
 @media(max-width:700px){.outfit-editor-modal{max-height:94vh;padding:16px}.outfit-editor-layout{grid-template-columns:1fr}.outfit-stage{grid-template-columns:repeat(2,minmax(0,1fr));min-height:180px}.outfit-source-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-height:300px}.outfit-stage-heading>span{display:none}}
 @media(max-width:380px){.outfit-source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* Global search, recommendations, activity history and image gallery */
+.global-search{position:relative;display:flex;align-items:center;gap:8px;width:min(300px,34vw);height:36px;padding:0 10px;border:1px solid var(--border,#293746);border-radius:9px;background:#101923;color:#8fa5bc}
+.global-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#e5edf6;font-size:11px}
+.global-search>button{border:0;background:transparent;color:#a8bbce;padding:3px}
+.global-results{position:absolute;z-index:50;top:calc(100% + 8px);right:0;width:min(360px,88vw);max-height:360px;overflow:auto;padding:7px;background:#101923;border:1px solid #34485c;border-radius:11px;box-shadow:0 16px 42px #0009}
+.global-results>button{display:flex;align-items:center;gap:10px;width:100%;padding:10px;border:0;border-radius:7px;background:transparent;color:#b8d4ed;text-align:left}
+.global-results>button:hover{background:#1a2c3e}
+.global-results>button span{min-width:0;display:grid;gap:3px}
+.global-results>button b{font-size:11px;color:#e5edf6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.global-results>button small,.global-results>p{font-size:9px;color:#879bb0}
+.global-results>p{padding:8px}
+.suggested-look-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 22px}
+.suggested-look-card{display:grid;gap:9px;min-width:0;padding:12px;background:#111923;border:1px solid #293b4d;border-radius:12px}
+.suggested-look-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.suggested-look-images button{overflow:hidden;aspect-ratio:1;background:#1b2a39;border:0;border-radius:8px;color:#8fbbe4}
+.suggested-look-images img{width:100%;height:100%;object-fit:cover}
+.suggested-look-card>div:nth-child(2){display:grid;gap:4px;min-width:0}
+.suggested-look-card>div:nth-child(2)>b{font-size:11px;color:#e4edf7;line-height:1.4}
+.suggested-look-card small{font-size:9px;color:#8ea2b8}
+.activity-list{display:grid;gap:8px}
+.activity-item{display:flex;align-items:center;gap:12px;padding:13px;background:#111923;border:1px solid #293b4d;border-radius:10px}
+.activity-icon{display:grid;place-items:center;width:34px;height:34px;flex-shrink:0;border-radius:9px;background:#172d43;color:#8fc5ff}
+.activity-item>div:last-child{display:grid;gap:5px;min-width:0}
+.activity-item b{font-size:11px;color:#e0eaf5;overflow-wrap:anywhere}
+.activity-item small{font-size:9px;color:#8498ae}
+.image-lightbox{z-index:100;padding:22px}
+.lightbox-content{display:grid;justify-items:center;gap:12px;max-width:94vw;max-height:90vh}
+.lightbox-content img{max-width:90vw;max-height:82vh;object-fit:contain}
+.lightbox-close{position:absolute;top:16px;right:16px;z-index:2}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:44px;height:54px;border:1px solid #ffffff35;border-radius:10px;background:#101923dd;color:#fff;z-index:2}
+.lightbox-prev{left:14px}.lightbox-next{right:14px}
+.lightbox-caption{display:flex;justify-content:space-between;gap:20px;width:100%;color:#d9e7f5;font-size:11px}
+.lightbox-caption span{color:#91a8bd}
+@media(max-width:850px){.suggested-look-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.global-search{width:min(230px,38vw)}}
+@media(max-width:600px){.global-search{width:min(210px,45vw)}.global-search input{font-size:10px}.top-actions>span:last-child{display:none}.suggested-look-grid{grid-template-columns:1fr}.lightbox-nav{width:36px;height:44px}.lightbox-prev{left:5px}.lightbox-next{right:5px}}
