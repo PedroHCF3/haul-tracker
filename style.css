@@ -222,3 +222,5 @@
 
 @media(max-width:850px){.import-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.import-calculator{padding:14px}.import-calculator-head{display:grid}.import-state-pill{justify-self:start}.import-input-grid{grid-template-columns:1fr}.import-breakdown>div{font-size:10px}}
+
+.original-cny{display:block;color:#8fb7df;font-size:10px;font-weight:600;margin-left:6px;white-space:nowrap}
