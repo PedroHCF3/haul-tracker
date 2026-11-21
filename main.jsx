@@ -101,11 +101,27 @@ function App(){
   setQcSearchLoading(true);setQcSearchError('');setQcResults(null);
   const selectedOption=(buyData.options||[]).find(option=>/(version|versão|style|styles|color|colour|cor|配色|款式|版本)/i.test(String(option.label||option.name)));
   const selectedVariant=selectedOption?buySelection[selectedOption.name]||'':Object.values(buySelection).filter(Boolean).join(' / ');
+  // QC photos are listing-level, so cache by original product ID/URL, not by selected SKU.
+  const cacheIdentity=[buyData.platform||'',buyData.product_id||'',buyData.canonical_url||buyUrl.trim()].join('|').toLowerCase();
+  const cacheKey='haul_tracker_qc_cache_v1_'+encodeURIComponent(cacheIdentity);
+  const cacheTtl=7*24*60*60*1000;
   try{
+   try{
+    const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
+    if(cached?.savedAt&&Date.now()-cached.savedAt<cacheTtl&&cached.data?.ok){
+     setQcResults(cached.data);
+     if(!cached.data.images?.length)setQcSearchError('O anúncio foi encontrado, mas não há prévias de fotos QC disponíveis.');
+     setNotice('Fotos QC carregadas do cache — nenhuma consulta foi feita à RepsAPI.');
+     setQcSearchLoading(false);
+     return;
+    }
+    if(cached)localStorage.removeItem(cacheKey);
+   }catch{ /* cache unavailable or invalid; continue with live lookup */ }
    const {data,error}=await supabase.functions.invoke('repsapi-qc-search-preview',{body:{url:buyUrl.trim(),canonical_url:buyData.canonical_url||'',platform:buyData.platform||'',product_id:buyData.product_id||'',title:buyData.title||buyProductName,selected_variant:selectedVariant}});
    if(error){let message=error.message||'Falha ao consultar as fotos QC.';try{const details=await error.context?.json();if(details?.error)message=details.error;}catch{}throw new Error(message);}
    if(!data?.ok)throw new Error(data?.error||'Nenhuma foto QC encontrada.');
    setQcResults(data);
+   try{localStorage.setItem(cacheKey,JSON.stringify({savedAt:Date.now(),data}));}catch{ /* storage may be full or disabled */ }
    if(!data.images?.length)setQcSearchError('O anúncio foi encontrado, mas não há prévias de fotos QC disponíveis.');
   }catch(err){setQcSearchError(err?.message||'Não foi possível buscar fotos QC.');}
   finally{setQcSearchLoading(false);}
