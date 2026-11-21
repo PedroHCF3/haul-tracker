@@ -102,7 +102,7 @@ function App(){
   const selectedOption=(buyData.options||[]).find(option=>/(version|versão|style|styles|color|colour|cor|配色|款式|版本)/i.test(String(option.label||option.name)));
   const selectedVariant=selectedOption?buySelection[selectedOption.name]||'':Object.values(buySelection).filter(Boolean).join(' / ');
   try{
-   const {data,error}=await supabase.functions.invoke('qualitly-qc-search-preview',{body:{url:buyUrl.trim(),canonical_url:buyData.canonical_url||'',platform:buyData.platform||'',product_id:buyData.product_id||'',selected_variant:selectedVariant}});
+   const {data,error}=await supabase.functions.invoke('repsapi-qc-search-preview',{body:{url:buyUrl.trim(),canonical_url:buyData.canonical_url||'',platform:buyData.platform||'',product_id:buyData.product_id||'',title:buyData.title||buyProductName,selected_variant:selectedVariant}});
    if(error){let message=error.message||'Falha ao consultar as fotos QC.';try{const details=await error.context?.json();if(details?.error)message=details.error;}catch{}throw new Error(message);}
    if(!data?.ok)throw new Error(data?.error||'Nenhuma foto QC encontrada.');
    setQcResults(data);
