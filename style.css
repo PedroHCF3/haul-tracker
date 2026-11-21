@@ -346,3 +346,7 @@
 .buy-version-pagination button{display:inline-flex;align-items:center;gap:4px;padding:7px 9px;font-size:10px;white-space:nowrap}
 .buy-version-pagination button:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:420px){.buy-version-pagination{flex-wrap:wrap}.buy-version-pagination span{order:-1;flex-basis:100%}}
+
+.buy-product-name-input{display:block;width:100%;max-width:620px;margin:6px 0 8px;padding:9px 11px;border:1px solid var(--border,#334155);border-radius:9px;background:var(--surface,#0b1220);color:var(--text,#f4f6fb);font:600 20px/1.3 inherit;outline:none}
+.buy-product-name-input:focus{border-color:var(--accent,#8b9cff);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent,#8b9cff) 20%,transparent)}
+.buy-product-name-input::placeholder{color:var(--muted,#94a3b8)}
