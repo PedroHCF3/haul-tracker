@@ -138,16 +138,6 @@
 .product-quick-actions{display:flex;gap:7px;flex-wrap:wrap}
 .favorite-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 8px;border:1px solid #5b4b2c;border-radius:7px;background:#211d15;color:#c9ad70;font-size:10px}
 .favorite-toggle.active{background:#332914;border-color:#947334;color:#f3ce77}
-.currency-card{display:grid;gap:14px;margin-bottom:22px;padding:20px;background:#111923;border:1px solid #263443;border-radius:14px}
-.currency-card h2{font:600 17px 'Space Grotesk';margin:4px 0}
-.currency-controls{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:10px;align-items:end}
-.currency-controls label{display:grid;gap:6px;color:#aab8c9;font-size:11px;font-weight:600}
-.currency-controls input,.currency-controls select{width:100%;min-width:0;height:42px;border:1px solid #293746;border-radius:8px;background:#0c131b;color:#e5edf6;padding:0 10px;font-size:12px}
-.currency-result{display:grid;gap:4px;padding:13px 15px;background:#142536;border:1px solid #29445d;border-radius:9px}
-.currency-result span,.currency-result small{color:#91a8bd;font-size:10px}
-.currency-result strong{font:600 24px 'Space Grotesk';color:#a8d6ff}
-.currency-footnote{font-size:10px;line-height:1.5;color:#8292a6;margin:0}
-.currency-error{color:#ffb3a9;font-size:11px;margin:0}
 .dashboard-settings{width:min(440px,100%)}
 .dashboard-option{display:flex!important;align-items:center;justify-content:space-between;gap:15px;padding:11px 12px;background:#0c131b;border:1px solid #293746;border-radius:8px;color:#dce7f2!important}
 .dashboard-option input{width:17px;height:17px;accent-color:#70b6ff}
@@ -230,20 +220,5 @@
 @media(max-width:600px){.global-search{width:min(210px,45vw)}.global-search input{font-size:10px}.top-actions>span:last-child{display:none}.suggested-look-grid{grid-template-columns:1fr}.lightbox-nav{width:36px;height:44px}.lightbox-prev{left:5px}.lightbox-next{right:5px}}
 
 
-/* Import tax calculator and tag filters */
-.import-calculator{display:grid;gap:16px;margin:22px 0;padding:20px;background:#111923;border:1px solid #293b4d;border-radius:14px}
-.import-calculator-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.import-calculator-head h2{font:600 18px 'Space Grotesk';margin:4px 0}
-.import-state-pill{flex-shrink:0;padding:7px 10px;border:1px solid #31506a;border-radius:8px;background:#14283a;color:#a9d3f8;font-size:10px}
-.import-input-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
-.import-input-grid label{display:grid;gap:6px;color:#aab8c9;font-size:10px;font-weight:600}
-.import-input-grid input,.import-input-grid select{width:100%;min-width:0;height:40px;border:1px solid #293746;border-radius:8px;background:#0c131b;color:#e5edf6;padding:0 10px;font-size:11px}
-.import-rate-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.import-rate-row small{color:#91a8bd;font-size:10px}
-.import-breakdown{display:grid;gap:0;padding:12px 14px;background:#0c131b;border:1px solid #293746;border-radius:10px}
-.import-breakdown>div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #24313e;font-size:11px}
-.import-breakdown>div span{color:#9aabc0}.import-breakdown>div b{color:#e2edf8;white-space:nowrap}
-.import-breakdown .import-total{align-items:center;border:0;padding-bottom:2px}.import-breakdown .import-total span{color:#dce8f5;font-weight:700}.import-breakdown .import-total strong{font:600 23px 'Space Grotesk';color:#9dd4ff;white-space:nowrap}
-.tag-summary{margin-top:9px}
 @media(max-width:850px){.import-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.import-calculator{padding:14px}.import-calculator-head{display:grid}.import-state-pill{justify-self:start}.import-input-grid{grid-template-columns:1fr}.import-breakdown>div{font-size:10px}}
