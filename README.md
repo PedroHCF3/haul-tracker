@@ -50,4 +50,4 @@ Quando a execução terminar:
 3. Baixe o artefato `haul-tracker-android-apk`.
 4. Extraia o ZIP e instale `app-debug.apk` no Android.
 
-O APK e o site usam o mesmo projeto Supabase; portanto, os produtos permanecem na mesma conta e no mesmo banco de dados. O APK de depuração é para instalação e testes pessoais, não para publicação na Play Store.
+O APK e o site usam o mesmo projeto Supabase e a chave Publishable pública do projeto; portanto, os produtos permanecem na mesma conta e no mesmo banco de dados. O APK de depuração é para instalação e testes pessoais, não para publicação na Play Store.
