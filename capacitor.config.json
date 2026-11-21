@@ -1,0 +1,6 @@
+{
+  "appId": "com.pedrohcf3.haultracker",
+  "appName": "Haul Tracker",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

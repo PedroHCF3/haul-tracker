@@ -40,3 +40,14 @@ Publique o conteúdo de `dist/` em um host HTTPS (por exemplo, Vercel ou Netlify
 
 ## Configuração já aplicada
 O arquivo `.env.local` deste pacote contém a URL do projeto e a chave Publishable fornecidas para conectar o Haul Tracker. Essa chave é pública por definição e pode ficar no cliente; a proteção dos dados depende das políticas RLS. Não compartilhe chaves `sb_secret_...` ou `service_role`.
+
+## 4. Gerar o APK Android
+O projeto usa Capacitor para empacotar a mesma aplicação React em um app Android, com a versão atual do Android SDK no GitHub Actions. Cada atualização enviada para a branch `feature/product-images-variants` inicia automaticamente o workflow **Build Android APK** no GitHub Actions.
+
+Quando a execução terminar:
+1. Abra a aba **Actions** do repositório no GitHub.
+2. Selecione a execução **Build Android APK** concluída.
+3. Baixe o artefato `haul-tracker-android-apk`.
+4. Extraia o ZIP e instale `app-debug.apk` no Android.
+
+O APK e o site usam o mesmo projeto Supabase e a chave Publishable pública do projeto; portanto, os produtos permanecem na mesma conta e no mesmo banco de dados. O APK de depuração é para instalação e testes pessoais, não para publicação na Play Store.
