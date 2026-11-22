@@ -403,7 +403,7 @@
 .visual-product-links{display:grid;gap:5px}
 .visual-product-links button,.visual-product-links a{display:flex;align-items:center;gap:6px;width:max-content;max-width:100%;padding:0;border:0;background:none;color:#a7b4c8;text-decoration:none;font-size:11px;cursor:pointer}
 .visual-product-links button:hover,.visual-product-links a:hover{color:#b99aff}
-.visual-product-links .copy{color:#f4c542}.visual-product-links .share{color:#22c987}
+.visual-product-links .copy{color:#f4c542}.visual-product-links .share{color:#22c987}.visual-product-links .qc{color:#9f8cff}.visual-product-links .qc:hover{color:#c4b5fd}
 .visual-product-links button:disabled{opacity:.35;cursor:not-allowed}
 .visual-product-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #252d3b;padding-top:9px;margin-top:3px}
 .visual-product-footer select{min-width:0;max-width:calc(100% - 62px);background:#101722;border:1px solid #2a3545;color:#aab7ca;border-radius:7px;padding:6px;font-size:10px}
