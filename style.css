@@ -208,7 +208,7 @@
 .activity-item>div:last-child{display:grid;gap:5px;min-width:0}
 .activity-item b{font-size:11px;color:#e0eaf5;overflow-wrap:anywhere}
 .activity-item small{font-size:9px;color:#8498ae}
-.image-lightbox{z-index:100;padding:22px}
+.image-lightbox{z-index:10000;padding:22px;isolation:isolate}
 .lightbox-content{display:grid;justify-items:center;gap:12px;max-width:94vw;max-height:90vh}
 .lightbox-content img{max-width:90vw;max-height:82vh;object-fit:contain}
 .lightbox-close{position:absolute;top:16px;right:16px;z-index:2}
