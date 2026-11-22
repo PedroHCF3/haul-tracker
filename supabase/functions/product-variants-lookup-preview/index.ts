@@ -654,6 +654,9 @@ Deno.serve(async (req: Request) => {
     const fallbackPrice = price(result.price?.low ?? result.price?.discount_low ?? result.price_cny ?? result.price);
     const prices = skus.map((sku: any) => sku.price_cny).filter((v: number | null): v is number => v !== null);
     const lowPrice = fallbackPrice ?? (prices.length ? Math.min(...prices) : null);
+    if (!images.length && !options.length && !skus.length && lowPrice == null) {
+      return json({ error: "O provedor não retornou dados úteis para este anúncio. Confira o link original no Doppel.fit ou tente novamente." }, 422);
+    }
     return json({
       ok: true,
       platform: result.platform || null,
