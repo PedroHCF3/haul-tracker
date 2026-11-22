@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/product-images-variants
+      - feature/official-baseline
   workflow_dispatch:
 
 permissions:
