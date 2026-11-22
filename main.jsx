@@ -105,7 +105,11 @@ function App(){
     if(!session?.access_token)throw new Error('Faça login novamente para processar esta imagem.');
     response=await fetch(`${url}/functions/v1/product-variants-lookup-preview`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${session.access_token}`,'apikey':publishableKey},body:JSON.stringify({image_url:expandedImage})});
    }
-   if(!response.ok)throw new Error('Não foi possível preparar a imagem. Tente novamente.');
+   if(!response.ok){
+    let detail='';
+    try{const payload=await response.clone().json();detail=payload?.error||'';}catch{}
+    throw new Error(detail||`Falha ao carregar a imagem (HTTP ${response.status}).`);
+   }
    const blob=await response.blob();
    if(!blob.type.startsWith('image/'))throw new Error('O endereço não retornou uma imagem válida.');
    const bitmap=await createImageBitmap(blob);
