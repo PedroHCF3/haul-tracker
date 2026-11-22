@@ -109,7 +109,7 @@ function App(){
    const blob=await response.blob();
    if(!blob.type.startsWith('image/'))throw new Error('O endereço não retornou uma imagem válida.');
    const bitmap=await createImageBitmap(blob);
-   const scale=Math.min(2,2400/Math.max(bitmap.width,bitmap.height));
+   const scale=Math.min(2,Math.max(1,1800/Math.max(bitmap.width,bitmap.height)));
    const width=Math.max(1,Math.round(bitmap.width*scale)),height=Math.max(1,Math.round(bitmap.height*scale));
    const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
    const ctx=canvas.getContext('2d',{willReadFrequently:true});
@@ -168,7 +168,7 @@ function App(){
    setExpandedIndex(valid.findIndex(item=>item.reused));
   }
  }
- useEffect(()=>{if(!expandedImage)return;const onKey=e=>{if(e.key==='Escape'){setExpandedImage(null);setExpandedGallery([]);setGalleryObjectUrls([])}if(e.key==='ArrowRight')moveGallery(1);if(e.key==='ArrowLeft')moveGallery(-1)};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[expandedImage,expandedIndex,expandedGallery]);
+ useEffect(()=>{if(!expandedImage)return;const onKey=e=>{if(e.key==='Escape'){setExpandedImage(null);setExpandedGallery([]);setGalleryObjectUrls([]);clearEnhancedImage()}if(e.key==='ArrowRight')moveGallery(1);if(e.key==='ArrowLeft')moveGallery(-1)};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[expandedImage,expandedIndex,expandedGallery]);
  async function loadShipments(){const {data,error}=await supabase.from('shipments').select('*').order('created_at',{ascending:false});if(error){setNotice('Erro ao carregar pacotes: '+error.message);return;}setShipments(data||[]);const {data:items,error:itemError}=await supabase.from('shipment_items').select('*');if(itemError){setNotice('Erro ao carregar produtos dos pacotes: '+itemError.message);return;}const grouped={};(items||[]).forEach(item=>{(grouped[item.shipment_id]??=[]).push(item)});setShipmentItems(grouped)}
  async function auth(e){e.preventDefault();setAuthMsg('');if(!supabase){setAuthMsg('Configure o Supabase no arquivo .env para ativar o login.');return;}let result=authMode==='signup'?await supabase.auth.signUp({email,password}):await supabase.auth.signInWithPassword({email,password});if(result.error)setAuthMsg(result.error.message);else if(authMode==='signup')setAuthMsg('Conta criada! Confira seu e-mail para confirmar o cadastro.');}
  async function google(){if(!supabase){setAuthMsg('Configure o Supabase no arquivo .env para ativar o login.');return;}const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin}});if(error)setAuthMsg(error.message)}
