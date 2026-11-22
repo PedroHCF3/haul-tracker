@@ -96,9 +96,19 @@ function App(){
  function openImageGallery(images,index=0){setGalleryObjectUrls([]);const list=(images||[]).filter(item=>item?.image_url||item?.url).map(item=>({url:item.image_url||item.url,title:item.name||item.title||'Imagem do produto'}));if(!list.length)return;const next=Math.max(0,Math.min(index,list.length-1));setExpandedGallery(list);setExpandedIndex(next);setGalleryZoom(false);setExpandedImage(list[next].url)}
  function moveGallery(direction){if(!expandedGallery.length)return;const next=(expandedIndex+direction+expandedGallery.length)%expandedGallery.length;setExpandedIndex(next);setGalleryZoom(false);setExpandedImage(expandedGallery[next].url)}
  async function openBuyImageGallery(images,index=0){
-  const source=(images||[]).filter(Boolean);
+  const source=[...new Set((images||[]).filter(Boolean))];
   if(!source.length||!session?.access_token)return;
+  const selectedIndex=Math.max(0,Math.min(index,source.length-1));
+  const selectedUrl=buyImageDisplay||'';
+  if(!selectedUrl){setNotice('Aguarde a foto principal terminar de carregar e tente novamente.');return;}
+  // Abre imediatamente usando a imagem que já está carregada na tela.
+  setGalleryObjectUrls([]);
+  setExpandedGallery([{url:selectedUrl,title:'Foto '+(selectedIndex+1)}]);
+  setExpandedIndex(0);setGalleryZoom(false);setExpandedImage(selectedUrl);
+  if(source.length===1)return;
+  // As demais fotos são buscadas em segundo plano para não atrasar a abertura do zoom.
   const resolved=await Promise.all(source.map(async(image,i)=>{
+   if(i===selectedIndex)return {url:selectedUrl,title:'Foto '+(i+1),reused:true};
    try{
     const response=await fetch(`${url}/functions/v1/product-variants-lookup-preview`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${session.access_token}`,'apikey':publishableKey},body:JSON.stringify({image_url:image})});
     if(!response.ok)throw new Error('Imagem indisponível');
@@ -108,12 +118,12 @@ function App(){
    }catch{return null;}
   }));
   const valid=resolved.filter(Boolean);
-  if(!valid.length){setNotice('Não foi possível abrir a imagem pelo servidor.');return;}
-  const selectedSource=source[Math.max(0,Math.min(index,source.length-1))];
-  const selectedResolved=resolved[Math.max(0,Math.min(index,source.length-1))];
-  const nextIndex=selectedResolved?valid.indexOf(selectedResolved):0;
-  setGalleryObjectUrls(valid.map(item=>item.url));
-  setExpandedGallery(valid);setExpandedIndex(nextIndex);setGalleryZoom(false);setExpandedImage(valid[nextIndex].url);
+  const urls=valid.filter(item=>!item.reused).map(item=>item.url);
+  if(valid.length){
+   setGalleryObjectUrls(urls);
+   setExpandedGallery(valid);
+   setExpandedIndex(valid.findIndex(item=>item.reused));
+  }
  }
  useEffect(()=>{if(!expandedImage)return;const onKey=e=>{if(e.key==='Escape'){setExpandedImage(null);setExpandedGallery([]);setGalleryObjectUrls([])}if(e.key==='ArrowRight')moveGallery(1);if(e.key==='ArrowLeft')moveGallery(-1)};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey)},[expandedImage,expandedIndex,expandedGallery]);
  async function loadShipments(){const {data,error}=await supabase.from('shipments').select('*').order('created_at',{ascending:false});if(error){setNotice('Erro ao carregar pacotes: '+error.message);return;}setShipments(data||[]);const {data:items,error:itemError}=await supabase.from('shipment_items').select('*');if(itemError){setNotice('Erro ao carregar produtos dos pacotes: '+itemError.message);return;}const grouped={};(items||[]).forEach(item=>{(grouped[item.shipment_id]??=[]).push(item)});setShipmentItems(grouped)}
