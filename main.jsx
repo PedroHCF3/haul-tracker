@@ -149,7 +149,10 @@ function App(){
    env.allowRemoteModels=true;
    if(env.backends?.onnx?.wasm)env.backends.onnx.wasm.numThreads=1;
    if(!window.__haulTrackerUpscaler){
-    window.__haulTrackerUpscaler=await pipeline('image-to-image','thisismert/real-esrgan-onnx',{device:navigator.gpu?'webgpu':'wasm'});
+    if(navigator.gpu){
+     try{window.__haulTrackerUpscaler=await pipeline('image-to-image','thisismert/real-esrgan-onnx',{device:'webgpu'});}
+     catch(gpuError){console.warn('WebGPU indisponível para o modelo; usando WASM.',gpuError);window.__haulTrackerUpscaler=await pipeline('image-to-image','thisismert/real-esrgan-onnx',{device:'wasm'});}
+    }else window.__haulTrackerUpscaler=await pipeline('image-to-image','thisismert/real-esrgan-onnx',{device:'wasm'});
    }
    const upscaled=await window.__haulTrackerUpscaler(sourceCanvas);
    const width=upscaled.width,height=upscaled.height,channels=upscaled.channels||3;
