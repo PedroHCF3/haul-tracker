@@ -417,3 +417,7 @@
 @media(max-width:1100px){.visual-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.visual-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.visual-product-media{height:170px}.visual-product-body{padding:10px}.visual-price-row strong{font-size:16px}}
 @media(max-width:420px){.visual-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.visual-product-media{height:135px}.visual-product-body{padding:8px}.visual-price-row strong{font-size:14px}.visual-product-name{font-size:11px}.visual-product-links button,.visual-product-links a{font-size:10px}}
+
+
+/* Persistent version label for the current product-screen UI */
+.version-indicator{position:fixed;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:1000;padding:6px 9px;border:1px solid #31465b;border-radius:8px;background:rgba(10,16,24,.9);backdrop-filter:blur(10px);color:#91a8bf;font:600 9px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;pointer-events:none;box-shadow:0 3px 14px #0004}.center-screen,.auth-wrap{position:relative}
