@@ -127,7 +127,7 @@ Quando a execução terminar:
 1. Acesse [GitHub Actions](https://github.com/PedroHCF3/haul-tracker/actions).
 2. Abra a execução **Build Android APK**.
 3. Baixe o artefato `haul-tracker-android-apk`.
-4. Extraia o arquivo ZIP e instale o `app-debug.apk no dispositivo Android.
+4. Extraia o arquivo ZIP e instale o arquivo `app-debug.apk` no dispositivo Android.
 
 Quando uma release for publicada pelo workflow, o APK também ficará disponível na página de [Releases](https://github.com/PedroHCF3/haul-tracker/releases).
 
