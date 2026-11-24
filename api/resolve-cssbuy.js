@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const raw = typeof req.query?.url === 'string' ? req.query.url : '';
   let input;
   try { input = new URL(raw); } catch { return res.status(400).json({ error: 'URL inválida.' }); }
-  const allowed = host => host === 'cssb.uy' || host.endsWith('.cssb.uy') || host === 'cssbuy.com' || host.endsWith('.cssbuy.com');
+  const allowed = host => host === 'cssb.uy' || host.endsWith('.cssb.uy') || host === 'cssbuy.com' || host.endsWith('.cssbuy.com') || host === '1688.com' || host.endsWith('.1688.com') || host === 'weidian.com' || host.endsWith('.weidian.com');
   if (!allowed(input.hostname.toLowerCase())) return res.status(400).json({ error: 'Domínio não suportado.' });
 
   try {
@@ -34,6 +34,8 @@ export default async function handler(req, res) {
 
 function parseOriginal(url) {
   const host = url.hostname.toLowerCase();
+  if (host === '1688.com' || host.endsWith('.1688.com')) { const direct = url.pathname.match(/\\/offer\\/(\\d{8,})/i); if (direct) return { url: 'https://detail.1688.com/offer/' + direct[1] + '.html', platform: '1688' }; }
+  if (host === 'weidian.com' || host.endsWith('.weidian.com')) { const direct = url.searchParams.get('itemID'); if (direct && /^\\d{5,}$/.test(direct)) return { url: 'https://weidian.com/item.html?itemID=' + direct, platform: 'Weidian' }; }
   const mobile = url.pathname.match(/item-micro-(\d+)\.html/i);
   if (mobile) return { url: 'https://weidian.com/item.html?itemID=' + mobile[1], platform: 'Weidian' };
   const embedded = url.href.match(/item-1688-(\d+)\.html/i);
