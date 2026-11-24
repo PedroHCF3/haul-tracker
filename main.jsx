@@ -246,7 +246,8 @@ function parseCssbuySourceLink(raw){
  let parsed;
  try{parsed=new URL(value)}catch{return {error:'Esse link não parece ser uma URL válida.'}}
  const host=parsed.hostname.toLowerCase();
- if(!host.includes('cssbuy.com')) return {error:'Por enquanto, cole um link do CSSBuy.'};
+ if(!host.includes('cssbuy.com')&&!['cssb.uy','www.cssb.uy'].includes(host)) return {error:'Cole um link do CSSBuy ou um link curto cssb.uy.'};
+ if(host.includes('cssb.uy'))return {needsResolve:true};
  const mobileMatch=parsed.pathname.match(/item-micro-(\\d+)\\.html/i);
  if(mobileMatch)return {url:'https://weidian.com/item.html?itemID='+mobileMatch[1],platform:'Weidian'};
  const params=parsed.searchParams;
@@ -265,8 +266,9 @@ function parseCssbuySourceLink(raw){
   }
  }
  const type=(params.get('type')||params.get('platform')||'').toLowerCase();
+ const embedded1688=parsed.search.match(/(?:^|[&?])item-1688-(\d+)\.html(?:&|$)/i)?.[1]||parsed.href.match(/item-1688-(\d+)\.html/i)?.[1];
  const id=params.get('id')||params.get('itemID')||params.get('itemId')||params.get('offer_id')||'';
- const numericId=id.match(/^\d+$/)?.[0];
+ const numericId=(embedded1688||id).match(/^\d+$/)?.[0];
  if(!numericId)return {error:'Esse link usa um identificador interno do CSSBuy, não o ID original do fornecedor. Não dá para montar um link confiável só com esse código.'};
  if(type.includes('1688'))return {url:'https://detail.1688.com/offer/'+numericId+'.html',platform:'1688'};
  if(type.includes('weidian')||type==='micro')return {url:'https://weidian.com/item.html?itemID='+numericId,platform:'Weidian'};
@@ -276,7 +278,7 @@ function CssbuyLinkConverter(){
  const [input,setInput]=useState('');
  const [result,setResult]=useState(null);
  const [copied,setCopied]=useState(false);
- function convert(e){e.preventDefault();setCopied(false);setResult(parseCssbuySourceLink(input));}
+ async function convert(e){e.preventDefault();setCopied(false);setResult(null);const local=parseCssbuySourceLink(input);if(local.url){setResult(local);return;}try{const response=await fetch('/api/resolve-cssbuy?url='+encodeURIComponent(input.trim()));const data=await response.json();setResult(data.url?data:local)}catch{setResult(local)}}
  async function copy(){if(!result?.url)return;try{await navigator.clipboard.writeText(result.url);setCopied(true)}catch{setResult({...result,copyError:'Não foi possível copiar automaticamente. Selecione o link e copie manualmente.'})}}
  return <section className="cssbuy-converter">
   <div className="cssbuy-converter-heading"><div className="tool-symbol"><Link2/></div><div><b>Conversor CSSBuy → fornecedor</b><p>Cole um link de produto do CSSBuy para gerar o endereço original do 1688 ou Weidian.</p></div></div>
