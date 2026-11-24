@@ -247,6 +247,8 @@ function parseCssbuySourceLink(raw){
  try{parsed=new URL(value)}catch{return {error:'Esse link não parece ser uma URL válida.'}}
  const host=parsed.hostname.toLowerCase();
  if(!host.includes('cssbuy.com')) return {error:'Por enquanto, cole um link do CSSBuy.'};
+ const mobileMatch=parsed.pathname.match(/item-micro-(\\d+)\\.html/i);
+ if(mobileMatch)return {url:'https://weidian.com/item.html?itemID='+mobileMatch[1],platform:'Weidian'};
  const params=parsed.searchParams;
  const embeddedKeys=['url','source','source_url','item_url','goods_url','target','redirect'];
  for(const key of embeddedKeys){
@@ -267,7 +269,7 @@ function parseCssbuySourceLink(raw){
  const numericId=id.match(/^\d+$/)?.[0];
  if(!numericId)return {error:'Esse link usa um identificador interno do CSSBuy, não o ID original do fornecedor. Não dá para montar um link confiável só com esse código.'};
  if(type.includes('1688'))return {url:'https://detail.1688.com/offer/'+numericId+'.html',platform:'1688'};
- if(type.includes('weidian'))return {url:'https://weidian.com/item.html?itemID='+numericId,platform:'Weidian'};
+ if(type.includes('weidian')||type==='micro')return {url:'https://weidian.com/item.html?itemID='+numericId,platform:'Weidian'};
  return {error:'Não consegui identificar se o produto é do 1688 ou do Weidian pelo parâmetro type.'};
 }
 function CssbuyLinkConverter(){
