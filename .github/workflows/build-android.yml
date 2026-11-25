@@ -53,10 +53,10 @@ jobs:
         run: npx cap sync android
 
       - name: Upload OTA bundle to Capgo (development)
-        if: env.CAPGO_TOKEN != ''
+        if: github.ref == 'refs/heads/feature/capgo-ota-updates'
         env:
           CAPGO_TOKEN: ${{ secrets.CAPGO_TOKEN }}
-        run: npx @capgo/cli@latest bundle upload --channel development --auto-bump
+        run: npx @capgo/cli@latest bundle upload --channel development --auto-bump --apikey "$CAPGO_TOKEN"
 
       - name: Build debug APK
         run: |
