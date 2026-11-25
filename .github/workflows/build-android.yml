@@ -6,6 +6,7 @@ on:
       - main
       - feature/product-images-variants
       - feature/official-baseline
+      - feature/official-apk-build
   workflow_dispatch:
 
 permissions:
