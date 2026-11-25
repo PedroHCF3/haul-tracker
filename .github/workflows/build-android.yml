@@ -6,7 +6,6 @@ on:
       - main
       - feature/product-images-variants
       - feature/official-baseline
-      - feature/capgo-ota-updates
   workflow_dispatch:
 
 permissions:
@@ -19,6 +18,8 @@ jobs:
     env:
       VITE_SUPABASE_URL: https://hyvpmrycaqleiwjbctal.supabase.co
       VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_u-AdgPUQngrfvRHR4h-jfw_hquijGtm
+      OTAKIT_TOKEN: ${{ secrets.OTAKIT_TOKEN }}
+      OTAKIT_APP_ID: ${{ secrets.OTAKIT_APP_ID }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -52,11 +53,15 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
-      - name: Upload OTA bundle to Capgo (development)
-        if: github.ref == 'refs/heads/feature/capgo-ota-updates'
-        env:
-          CAPGO_TOKEN: ${{ secrets.CAPGO_TOKEN }}
-        run: npx @capgo/cli@latest bundle upload --channel development --auto-bump --apikey "$CAPGO_TOKEN"
+      - name: Validate OtaKit credentials
+        if: github.ref == 'refs/heads/feature/otakit-ota'
+        run: |
+          test -n "$OTAKIT_TOKEN" || { echo "Missing GitHub secret OTAKIT_TOKEN"; exit 1; }
+          test -n "$OTAKIT_APP_ID" || { echo "Missing GitHub secret OTAKIT_APP_ID"; exit 1; }
+
+      - name: Upload OTA bundle to OtaKit (staging)
+        if: github.ref == 'refs/heads/feature/otakit-ota'
+        run: npx --yes @otakit/cli@1.12.0 upload --release staging --fail-on-incompatible
 
       - name: Build debug APK
         run: |
@@ -75,7 +80,7 @@ jobs:
       - name: Publish APK release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: android-v1.0.3-${{ github.run_number }}
-          name: Haul Tracker Android v1.0.3 (build ${{ github.run_number }})
+          tag_name: android-v1.0.8-${{ github.run_number }}
+          name: Haul Tracker Android v1.0.8 (build ${{ github.run_number }})
           generate_release_notes: false
           files: android/app/build/outputs/apk/debug/app-debug.apk
