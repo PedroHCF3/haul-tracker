@@ -6,6 +6,7 @@ on:
       - main
       - feature/product-images-variants
       - feature/official-baseline
+      - feature/otakit-ota
   workflow_dispatch:
 
 permissions:
