@@ -6,6 +6,7 @@ on:
       - main
       - feature/product-images-variants
       - feature/official-baseline
+      - feature/capgo-ota-updates
   workflow_dispatch:
 
 permissions:
@@ -50,6 +51,12 @@ jobs:
 
       - name: Sync Capacitor
         run: npx cap sync android
+
+      - name: Upload OTA bundle to Capgo (development)
+        if: env.CAPGO_TOKEN != ''
+        env:
+          CAPGO_TOKEN: ${{ secrets.CAPGO_TOKEN }}
+        run: npx @capgo/cli@latest bundle upload --channel development --auto-bump
 
       - name: Build debug APK
         run: |
