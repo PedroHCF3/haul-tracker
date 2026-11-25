@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createClient } from '@supabase/supabase-js';
 import { Capacitor } from '@capacitor/core';
-import { CapacitorUpdater } from '@capgo/capacitor-updater';
+import { OtaKit } from '@otakit/capacitor-updater';
 import { Package, Search, Plus, Images, Star, ExternalLink, Trash2, Box, ScanEye, Wallet, Settings, LayoutDashboard, ShoppingBag, Menu, X, Link2, CheckCircle2, Clock3, Truck, Globe, Mail, Lock, ArrowUpRight, PackagePlus, Pencil, Info, History, Heart, Shirt, Tag, GripVertical, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import './style.css';
 
@@ -27,7 +27,7 @@ const displayOptionLabel=option=>option?.display_label||option?.label||option?.n
 function App(){
  useEffect(()=>{
   if(Capacitor.isNativePlatform()){
-   CapacitorUpdater.notifyAppReady().catch(error=>console.warn('Capacitor Updater não conseguiu confirmar o início do app:',error));
+   OtaKit.notifyAppReady().catch(error=>console.warn('OtaKit não conseguiu confirmar o início do app:',error));
   }
  },[]);
  const [session,setSession]=useState(null), [loading,setLoading]=useState(true), [authMode,setAuthMode]=useState('login'), [showRecoveryLogin,setShowRecoveryLogin]=useState(false);
