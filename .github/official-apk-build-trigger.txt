@@ -1,0 +1,1 @@
+Trigger isolated APK build from the main snapshot. No application source changes.
