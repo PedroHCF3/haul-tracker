@@ -2,5 +2,12 @@
   "appId": "com.pedrohcf3.haultracker",
   "appName": "Haul Tracker",
   "webDir": "dist",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "plugins": {
+    "CapacitorUpdater": {
+      "appId": "com.pedrohcf3.haultracker",
+      "autoUpdate": "atBackground",
+      "version": "1.0.8"
+    }
+  }
 }
