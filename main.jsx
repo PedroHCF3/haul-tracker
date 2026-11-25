@@ -25,6 +25,11 @@ class AppErrorBoundary extends React.Component {
 
 const displayOptionLabel=option=>option?.display_label||option?.label||option?.name||''; const isVersionOption=option=>{const name=String(option?.display_label||option?.label||option?.name||'');return /(version|versão|style|styles|color|colour|cor|配色|款式|版本|颜色|色系|颜色分类)/i.test(name)||Object.keys(option?.images||{}).length>0;}; const displayOptionValue=(option,value)=>{const index=(option?.values||[]).findIndex(item=>String(item)===String(value));return index>=0?(option?.display_values?.[index]||value):value;};
 function App(){
+ useEffect(()=>{
+  if(Capacitor.isNativePlatform()){
+   CapacitorUpdater.notifyAppReady().catch(error=>console.warn('Capacitor Updater não conseguiu confirmar o início do app:',error));
+  }
+ },[]);
  const [session,setSession]=useState(null), [loading,setLoading]=useState(true), [authMode,setAuthMode]=useState('login'), [showRecoveryLogin,setShowRecoveryLogin]=useState(false);
  const [email,setEmail]=useState(''),[password,setPassword]=useState(''),[authMsg,setAuthMsg]=useState('');
  const [products,setProducts]=useState([]),[tab,setTab]=useState('overview'),[query,setQuery]=useState(''),[globalQuery,setGlobalQuery]=useState(''),[showAdd,setShowAdd]=useState(false),[mobileNav,setMobileNav]=useState(false);
@@ -312,10 +317,3 @@ function ProductList({products,variants={},cnyRate=null,onManageVariants,onEdit,
 }
 
 createRoot(document.getElementById('root')).render(<AppErrorBoundary><App/></AppErrorBoundary>);
-
-// Confirma ao Capgo que o bundle nativo iniciou corretamente; se falhar, o plugin pode reverter.
-if (Capacitor.isNativePlatform()) {
-  CapacitorUpdater.notifyAppReady().catch((error) => {
-    console.warn('Capacitor Updater não conseguiu confirmar o início do app:', error);
-  });
-}
